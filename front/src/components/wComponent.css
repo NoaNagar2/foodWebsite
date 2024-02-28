@@ -1,0 +1,5 @@
+@media (max-width: 550px) {
+  .workshopCard {
+    flex-direction: row !important;
+  }
+}

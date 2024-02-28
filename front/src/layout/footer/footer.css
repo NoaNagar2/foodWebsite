@@ -1,0 +1,10 @@
+.footerLinks {
+  color: black;
+  text-decoration: none !important;
+}
+
+@media (max-width: 600px) {
+  .footerContainer {
+    flex-direction: column-reverse;
+  }
+}

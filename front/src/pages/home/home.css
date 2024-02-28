@@ -1,0 +1,12 @@
+@media (max-width: 970px) {
+  .buttonBox {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .buttonBox {
+    padding: 0;
+  }
+}
