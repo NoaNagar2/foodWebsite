@@ -15,6 +15,14 @@ const usersArr = [
     password: "ABCabc2004@",
     isAdmin: true,
   },
+  {
+    firstName: "user",
+    lastName: "Someone",
+    phone: "055-5555555",
+    email: "useruser@gmail.com",
+    password: "ABCabc2024@",
+    isAdmin: false,
+  },
 ];
 
 export { usersArr };

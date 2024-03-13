@@ -18,7 +18,7 @@ const recipeSchema = new Schema<IRecipe>({
     required: true,
     type: String,
     minlength: 2,
-    maxlength: 200,
+    maxlength: 1000,
   },
   alt: {
     required: true,

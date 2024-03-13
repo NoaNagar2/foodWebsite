@@ -1,0 +1,20 @@
+### get user by email
+GET http://localhost:8080/api/v1/users/email/noanagar88@gmail.com
+
+### login
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email":"noanagar88@gmail.com",
+    "password":"ABCabc2004@"
+}
+
+### send reminder email
+POST http://localhost:8080/api/v1/workshop/reminder/65a7aa318a1f7e5faea4bc18
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vYW5hZ2FyODhAZ21haWwuY29tIiwiX2lkIjoiNjViMGY2Yzg0MDU2MmM5MzZhNzI0ODJmIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzA5NjMxMDA1fQ.KeiGk2m7otPCx8p5Zj6cQ-1jIpdxjnOGqtke4AVrJLs
+
+{
+    "subject":"מחר זה קורההה!!!!",
+    "description":"לא לשכוחחח מחר בצהרים אנחנו בסדנאאא"
+}

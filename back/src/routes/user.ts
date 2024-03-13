@@ -61,4 +61,16 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// get user by email
+router.get("/email/:email", async (req, res, next) => {
+  try {
+    const email = req.params;
+    const user = await User.findOne(email);
+    const { password, ...rest } = user!;
+    return res.json({ user: rest });
+  } catch (e) {
+    next(e);
+  }
+});
+
 export { router as usersRouter };

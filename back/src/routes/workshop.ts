@@ -5,10 +5,10 @@ import {
   validateWorkshop,
 } from "../middleware/validation";
 import { extractToken, isAdmin } from "../middleware/is-admin";
-import { sendEmailAtTime } from "../middleware/sendMailAtTime";
-import schedule from "node-schedule";
 import { sendMail } from "../middleware/sendMail";
 import { sendMailToAdmin } from "../middleware/sendMailToAdmin";
+import nodemailer from "nodemailer";
+import { sendMailReminder } from "../middleware/sendMailReminder";
 
 const router = Router();
 
@@ -91,16 +91,35 @@ router.patch("/:id", validateParticipant, async (req, res, next) => {
     sendMail(email, id);
     sendMailToAdmin(name, PData.phone, PData.email);
 
-    const oneDayBeforeDate = new Date(workshop.date);
-    oneDayBeforeDate.setDate(oneDayBeforeDate.getDate() - 1);
+    // const oneDayBeforeDate = new Date(workshop.date);
+    // oneDayBeforeDate.setDate(oneDayBeforeDate.getDate() - 1);
 
-    schedule.scheduleJob(oneDayBeforeDate, function () {
-      sendEmailAtTime(PData.email);
-      console.log(
-        "Email scheduled to be sent the day before the specified date."
-      );
-    });
+    // schedule.scheduleJob(oneDayBeforeDate, function () {
+    //   sendEmailAtTime(PData.email);
+    //   console.log(
+    //     "Email scheduled to be sent the day before the specified date."
+    //   );
+    // });
     res.json({ massage: "saved" });
+  } catch (e) {
+    next(e);
+  }
+});
+
+// Sending a reminder
+router.post("/reminder/:id", isAdmin, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const subject = req.body.subject;
+    const description = req.body.description;
+    const workshop = await Workshop.findById(id);
+    const participant = workshop.participant;
+
+    for (let i of participant) {
+      sendMailReminder({ i }, id, description, subject);
+    }
+
+    res.json({ massage: "send" });
   } catch (e) {
     next(e);
   }

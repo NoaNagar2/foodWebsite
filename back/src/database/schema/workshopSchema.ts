@@ -17,7 +17,7 @@ const workshopSchema = new Schema<IWorkshop>({
     required: false,
     type: String,
     minlength: 2,
-    maxlength: 200,
+    maxlength: 1000,
   },
   alt: {
     required: false,
@@ -29,7 +29,7 @@ const workshopSchema = new Schema<IWorkshop>({
     required: true,
     type: String,
     minlength: 8,
-    maxlength: 12,
+    maxlength: 100,
   },
   time: {
     required: true,

@@ -1,7 +1,12 @@
 import nodemailer from "nodemailer";
 import { Workshop } from "../database/model/workshop";
 
-const sendMail = async (email: string, workshopId: string) => {
+const sendMailReminder = async (
+  { i },
+  workshopId: any,
+  description: string,
+  subject: string
+) => {
   const workshop = await Workshop.findById(workshopId);
 
   const transporter = nodemailer.createTransport({
@@ -14,12 +19,9 @@ const sendMail = async (email: string, workshopId: string) => {
 
   const mailOptions = {
     from: "noaworks88@gmail.com",
-    to: email,
-    subject: "ההרשמה לסדנא בוצעה בהצלחה",
-    text: ` ${workshop.title} :נרשמת לסדנא
-    ${workshop.date} :בתאריך 
-     ${workshop.time} :בשעה 
-    `,
+    to: i.email,
+    subject: subject,
+    text: description,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -31,4 +33,4 @@ const sendMail = async (email: string, workshopId: string) => {
   });
 };
 
-export { sendMail };
+export { sendMailReminder };
