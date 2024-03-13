@@ -4,7 +4,7 @@ import validation from "./validation";
 const createSchema = Joi.object({
   title: Joi.string().min(2).max(100).required(),
   subtitle: Joi.string().min(0).max(200),
-  url: Joi.string().min(2).max(200).required(),
+  url: Joi.string().min(2).max(1000).required(),
   alt: Joi.string().min(2).max(50).required(),
   address: Joi.string().min(2).max(200).required(),
   date: Joi.string()

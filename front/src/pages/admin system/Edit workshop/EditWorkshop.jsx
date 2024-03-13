@@ -1,8 +1,9 @@
 import React from "react";
 import { workshopValidate } from "../../../validation/workshopValidate";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { getToken } from "../../../service/storageService";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditWorkshop = async (inputValue, setErrorState, _id) => {
   const token = getToken();
@@ -23,26 +24,27 @@ const EditWorkshop = async (inputValue, setErrorState, _id) => {
       inputValue,
       config
     );
-    toast.success("Your card has been edit succssefully", {
-      position: "top-right",
+
+    toast.success("הסדנא נערכה בהצלחה", {
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   } catch (e) {
-    toast.error("request failed...Please try again later", {
-      position: "top-right",
+    toast.error("משהו השתבש... ודא שכל השדות מלאים", {
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   }
 };

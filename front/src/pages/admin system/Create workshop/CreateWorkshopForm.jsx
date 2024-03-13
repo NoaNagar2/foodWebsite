@@ -10,7 +10,7 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
-import CreateIcon from "@mui/icons-material/Create";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 import { inputWorkshopObj } from "./inputObj";
 import { CreateWorkshop } from "./CreateWorkshop";
 
@@ -33,10 +33,12 @@ const CreateWorkshopForm = () => {
 
   return (
     <Box>
-      <Avatar sx={{ bgcolor: "pink" }}>
-        <CreateIcon />
+      <Avatar sx={{ bgcolor: "pink", width: 50, height: 50 }}>
+        <EditNoteIcon fontSize="large" />
       </Avatar>
-      <Typography>יצירת סדנא</Typography>
+      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        יצירת סדנא:
+      </Typography>
       <Divider sx={{ mb: 2, mt: 2 }} />
       <Grid container flexDirection={"column"}>
         <Typography sx={{ mr: 1, mt: 2 }}>כותרת</Typography>
@@ -128,7 +130,7 @@ const CreateWorkshopForm = () => {
           onClick={handleCreateWorkshop}
           sx={{ mt: 2, mb: 2 }}
         >
-          יצירת סדנא
+          יצירת הסדנא
         </Button>
       </Grid>
     </Box>

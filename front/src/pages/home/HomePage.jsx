@@ -9,12 +9,14 @@ import normalization from "./normalization";
 import PopUpComponent from "../register_login/PopUpComponent";
 import AddIcon from "@mui/icons-material/Add";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import "./home.css";
 import { isAdmin } from "../../components/isAdmin";
+import "./home.css";
+import AoutMe from "./AoutMe";
 
 const HomePage = () => {
   const [recipeFromServer, setRecipeFromServer] = useState([]);
   const [workshopFromServer, setWorkshopFromServer] = useState([]);
+  const [logo, setLogo] = useState(null);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   let noAuth = false;
   const admin = isAdmin();
@@ -52,49 +54,11 @@ const HomePage = () => {
   return (
     <Container sx={{ mb: 2 }}>
       <Box sx={{}}>
-        <Avatar sx={{ m: 2, width: 80, height: 80, mr: 0 }}></Avatar>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          שלום לכולם ואיזה כייף שאתם כאן
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          שמי שנהב בנימין ירוחם , נשואה ואמא לשלושה ממתקים,
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          חיה, נושמת חולמת ומחוברת לאוכל, תזונה ומתכונים.
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          אוכל עבורי הוא שפה של אהבה, נתינה , הענקה, בית חם , אירוח וחום
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          אוכל הוא כלי שברגע שיודעים להשתמש בו בחוכמה הוא הופך להנאת והנעת
-          החיים!
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic", mt: 2 }}>
-          יש בי משיכה וחיבור לכל מה שמגיע מהטבע ,כל מה שהיה מחובר לאדמה והגיע
-          לצלחת שלנו, ירקות, פירות, קטניות , דגנים,
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          במקביל מטורפת על מאפים, עגות, לחמים, עוגית וכל סוגי הבצקים ,התנור דולק
-          אצלי בבית באופן קבוע .
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic", mt: 2 }}>
-          מזמינה אתכם להנות מאתר שכולו אוכל חגיגי, יפה , מרשים , מזין וטעים
-          בטירוף,
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          המטרה העיקרית שלי הוא לחבר אתכם למטבח , לבשל ממקום של אהבה ונתינה
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          ובעיקר להראות שלא חייב להיות שף גדול או קונדיטור מדופלם כדיי להכין
-          אוכל שמשגע את העין והחך.
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-          והכי חשוב לחיות באיזון והרמוניה עם כל הטוב והשפע שמגיע לצלחת שלנו.
-        </Typography>
-        <Typography variant="body1" sx={{ fontStyle: "italic", mt: 2 }}>
-          בנוסף ליצירת תוכן קולינרי ומתכונים אני מקיימת מגוון סדנאות אפייה
-          ואירוח בביתי ומזמינה את כולכם להגיע .
-        </Typography>
+        <Avatar
+          sx={{ m: 2, width: 90, height: 90, mr: 0 }}
+          src="http://localhost:8080/avatar.jpg"
+        ></Avatar>
+        <AoutMe />
       </Box>
 
       {admin && (
@@ -132,7 +96,16 @@ const HomePage = () => {
         </Grid>
       )}
 
-      <Typography variant="h3" sx={{ mt: 2, mb: 2 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          mt: 4,
+          mb: 4,
+          fontWeight: 600,
+          textAlign: "center",
+          textDecoration: "underline",
+        }}
+      >
         מתכונים חדשים באתר:
       </Typography>
       <Grid container spacing={4} sx={{ mb: 2 }}>
@@ -145,13 +118,26 @@ const HomePage = () => {
           </Grid>
         ))}
       </Grid>
-      <Button variant="outlined" href="/allrecipe" sx={{ mb: 4 }}>
+      <Button
+        variant="outlined"
+        href="/allrecipe"
+        sx={{ mb: 4 }}
+        className="moreButtons"
+      >
         לכל המתכונים...
       </Button>
 
       {noAuth && <PopUpComponent />}
 
-      <Typography variant="h3" sx={{ mb: 2 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          mb: 4,
+          fontWeight: 600,
+          textAlign: "center",
+          textDecoration: "underline",
+        }}
+      >
         סדנאות קרובות:
       </Typography>
       <Grid container spacing={2} sx={{ mb: 2 }}>
@@ -164,6 +150,7 @@ const HomePage = () => {
               alt={workshop.alt}
               date={workshop.date}
               participant={workshop.participant}
+              time={workshop.time}
             />
           </Grid>
         ))}

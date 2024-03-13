@@ -19,13 +19,13 @@ const PopUpComponent = () => {
   };
 
   return (
-    <Box sx={{ border: 2 }}>
+    <Box sx={{ border: "2px solid #dbabc3" }}>
       <Box sx={{ display: "flex", width: "100%" }}>
         <Box
           sx={{
             width: "50%",
             textAlign: "center",
-            border: "2px solid green",
+            border: 1,
             p: 2,
           }}
         >
@@ -35,7 +35,7 @@ const PopUpComponent = () => {
           sx={{
             width: "50%",
             textAlign: "center",
-            border: "2px solid green",
+            border: 1,
             p: 2,
           }}
         >

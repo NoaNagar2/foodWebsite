@@ -20,7 +20,7 @@ const RecipeByCategoryPage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [category]);
 
   return (
     <Grid container spacing={3} sx={{ mb: 2 }}>

@@ -11,10 +11,12 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { categoryArr } from "./categoryArr";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../../service/storageService";
 
 const RightDrawerComponent = ({ isOpen, onCloseDrawer }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const token = getToken();
 
   const handleOpenRecipe = () => {
     setOpen(!open);
@@ -106,6 +108,23 @@ const RightDrawerComponent = ({ isOpen, onCloseDrawer }) => {
             <Typography textAlign="center">סדנאות</Typography>
           </MenuItem>
         </Box>
+
+        <Divider />
+
+        {token && (
+          <Box>
+            <MenuItem
+              sx={{ p: 1, pr: 7, pl: 7, flexGrow: 1, color: "black" }}
+              onClick={() => {
+                navigate("/likesrecipe");
+                onCloseDrawer();
+              }}
+            >
+              <Typography textAlign="center">המועדפים שלי</Typography>
+            </MenuItem>
+          </Box>
+        )}
+
         <Divider />
       </List>
     </Box>

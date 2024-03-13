@@ -66,10 +66,12 @@ const CreateRecipeForm = () => {
 
   return (
     <Box>
-      <Avatar sx={{ bgcolor: "pink" }}>
-        <EditNoteIcon />
+      <Avatar sx={{ bgcolor: "pink", width: 50, height: 50 }}>
+        <EditNoteIcon fontSize="large" />
       </Avatar>
-      <Typography variant="h6">יצירת מתכון:</Typography>
+      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        יצירת מתכון:
+      </Typography>
       <Divider sx={{ mb: 2, mt: 2 }} />
       <Grid container flexDirection={"column"}>
         <Typography sx={{ mr: 1, mt: 2 }}>שם המתכון</Typography>
@@ -176,13 +178,12 @@ const CreateRecipeForm = () => {
             mt: 2,
             width: "100%",
             ml: "0%",
-            bgcolor: "primary.main",
             color: "myblue.main",
             mb: 2,
           }}
           onClick={handleCreateRecipe}
         >
-          צור מתכון
+          יצירת המתכון{" "}
         </Button>
       </Grid>
     </Box>

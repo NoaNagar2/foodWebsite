@@ -6,6 +6,7 @@ import storeCombine from "./store/combineRedusers";
 import { ToastContainer } from "react-toastify";
 import AppRouter from "./routes/Router";
 import { BrowserRouter } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const storeAll = createStore(storeCombine);

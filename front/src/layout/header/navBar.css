@@ -6,6 +6,17 @@
 
 .logo {
   margin: 0 auto;
+  border-radius: 50%;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .likesLink {
+    display: none;
+  }
 }
 
 @media (max-width: 700px) {

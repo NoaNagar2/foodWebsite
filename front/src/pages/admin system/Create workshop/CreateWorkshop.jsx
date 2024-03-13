@@ -3,9 +3,12 @@ import { workshopValidate } from "../../../validation/workshopValidate";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getToken } from "../../../service/storageService";
+// import { useNavigate } from "react-router-dom";
 
 const CreateWorkshop = async (inputValue, setErrorState) => {
   const token = getToken();
+  // const navigate = useNavigate();
+
   try {
     const joiResponse = workshopValidate(inputValue);
     setErrorState(joiResponse);
@@ -22,26 +25,27 @@ const CreateWorkshop = async (inputValue, setErrorState) => {
       inputValue,
       config
     );
+
     toast.success("הסדנא נוספה בהצלחה", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   } catch (e) {
     toast.error("משהו השתבש... ודא שכל השדות מלאים ", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   }
 };

@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-  Container,
-  Dialog,
-  Divider,
-} from "@mui/material";
+import { Box, Typography, Container, Dialog, Divider } from "@mui/material";
 import Link from "@mui/material/Link";
 import IconButton from "@mui/material/IconButton";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -32,6 +25,8 @@ const FooterComponent = () => {
       sx={{
         backgroundColor: "rgba(255,233,244,0.5)",
         textAlign: "center",
+        width: "99vw",
+        maxWidth: "99.5vw",
       }}
     >
       <Container
@@ -92,19 +87,19 @@ const FooterComponent = () => {
             href="https://www.instagram.com/invites/contact/?i=1pwua9sdpaev1&utm_content=3kfxmi"
             target="blank"
           >
-            <InstagramIcon fontSize="large" />
+            <InstagramIcon />
           </IconButton>
           <IconButton href="https://wa.me/972506409478" target="blank">
-            <WhatsAppIcon fontSize="large" />
+            <WhatsAppIcon />
           </IconButton>
           <IconButton
             href="https://www.facebook.com/shenhav.binyamin?mibextid=LQQJ4d"
             target="blank"
           >
-            <FacebookIcon fontSize="large" />
+            <FacebookIcon />
           </IconButton>
           <IconButton onClick={handleLocation}>
-            <LocationOnIcon fontSize="large" />
+            <LocationOnIcon />
           </IconButton>
           <Dialog open={openMap} onClose={handleClose} sx={{ width: "100vw" }}>
             <MapComponent />

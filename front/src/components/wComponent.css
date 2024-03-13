@@ -1,5 +1,32 @@
+.edit:hover {
+  color: #ffd700;
+}
+
+.delete:hover {
+  color: black;
+}
+
+.participant:hover {
+  color: #a1eca7;
+}
+
+.joinButton {
+  padding-right: 0;
+}
+
 @media (max-width: 550px) {
+  .img {
+    display: none;
+  }
   .workshopCard {
-    flex-direction: row !important;
+    border: 4px double rgb(252, 215, 233);
+  }
+  .boxCard {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .joinButton {
+    margin: 0 auto;
+    padding: 0;
   }
 }

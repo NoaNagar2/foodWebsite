@@ -11,7 +11,7 @@ import {
   Autocomplete,
 } from "@mui/material";
 import axios from "axios";
-import EditNoteIcon from "@mui/icons-material/EditNote";
+import CreateIcon from "@mui/icons-material/Create";
 import { inputValueObj } from "./inputValue";
 import { useParams } from "react-router-dom";
 import { newData } from "./newData";
@@ -64,10 +64,12 @@ const EditRecipeForm = () => {
 
   return (
     <Box>
-      <Avatar sx={{ bgcolor: "pink" }}>
-        <EditNoteIcon />
+      <Avatar sx={{ bgcolor: "pink", width: 50, height: 50 }}>
+        <CreateIcon />
       </Avatar>
-      <Typography variant="h6">עריכת מתכון:</Typography>
+      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        {`עריכת מתכון: ${inputValue.name}`}
+      </Typography>
       <Divider sx={{ mb: 2, mt: 2 }} />
       <Grid container flexDirection={"column"}>
         <Typography sx={{ mr: 1, mt: 2 }}>שם המתכון</Typography>
@@ -168,13 +170,12 @@ const EditRecipeForm = () => {
             mt: 2,
             width: "100%",
             ml: "0%",
-            bgcolor: "primary.main",
             color: "myblue.main",
             mb: 2,
           }}
           onClick={updateChange}
         >
-          צור מתכון
+          עריכת המתכון
         </Button>
       </Grid>
     </Box>

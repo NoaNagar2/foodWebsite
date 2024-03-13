@@ -15,12 +15,14 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import "./navBar.css";
 import { useNavigate } from "react-router-dom";
 import { categoryArr } from "./categoryArr";
+import { getToken } from "../../service/storageService";
 
 const NavBarComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [txt, setTxt] = React.useState("");
   const navigate = useNavigate();
+  const token = getToken();
 
   const handleInputChange = (e) => {
     setTxt(e.target.value);
@@ -167,9 +169,22 @@ const NavBarComponent = () => {
             </MenuItem>
           </Box>
 
-          <Box sx={{ width: "66vw" }}>
+          {token && (
+            <Box className="likesLink">
+              <MenuItem
+                onClick={() => {
+                  navigate("/likesrecipe");
+                }}
+                sx={{ p: 1, pr: 4, pl: 5, flexGrow: 1, color: "black", mr: 3 }}
+              >
+                <Typography textAlign="center">המועדפים שלי</Typography>
+              </MenuItem>
+            </Box>
+          )}
+
+          <Box sx={{ m: "0 auto", mt: 0.4 }}>
             <img
-              src="/public/logo.jpg"
+              src="http://localhost:8080/logo.jpg"
               alt="logo"
               width={60}
               height={60}
@@ -180,7 +195,7 @@ const NavBarComponent = () => {
             />
           </Box>
 
-          <Search sx={{ mr: 2 }}>
+          <Search sx={{ mr: 2 }} className="search">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

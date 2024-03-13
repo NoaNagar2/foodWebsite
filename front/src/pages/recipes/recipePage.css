@@ -1,0 +1,10 @@
+.recipeImg {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  .recipeImg {
+    width: 70%;
+  }
+}

@@ -51,10 +51,12 @@ const EditWorkshopForm = () => {
 
   return (
     <Box>
-      <Avatar sx={{ bgcolor: "pink" }}>
+      <Avatar sx={{ bgcolor: "pink", width: 50, height: 50 }}>
         <CreateIcon />
       </Avatar>
-      <Typography>עריכת סדנא</Typography>
+      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+        {`עריכת סדנא: ${inputValue.title}`}
+      </Typography>
       <Divider sx={{ mb: 2, mt: 2 }} />
       <Grid container flexDirection={"column"}>
         <Typography sx={{ mr: 1, mt: 2 }}>כותרת</Typography>
@@ -139,7 +141,7 @@ const EditWorkshopForm = () => {
           onClick={handleEditWorkshop}
           sx={{ mt: 2, mb: 2 }}
         >
-          יצירת סדנא
+          עריכת הסדנא{" "}
         </Button>
       </Grid>
     </Box>

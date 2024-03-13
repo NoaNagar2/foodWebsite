@@ -23,7 +23,7 @@ const EditRecipe = async (inputValue, setErrorState, _id) => {
       config
     );
 
-    toast.success("המתכון עודכן בהצלחה", {
+    toast.success("המתכון נערך בהצלחה", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -31,7 +31,7 @@ const EditRecipe = async (inputValue, setErrorState, _id) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: "light",
     });
   } catch (e) {
     toast.error("משהו השתבש... ודא שכל השדות מלאים", {

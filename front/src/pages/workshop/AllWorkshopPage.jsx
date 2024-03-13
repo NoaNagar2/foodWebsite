@@ -21,63 +21,7 @@ const AllWorkshopPage = () => {
       });
   }, []);
 
-  const handleDeleteWorkshop = async (_id) => {
-    try {
-      const { data } = await axios.delete(
-        "http://localhost:8080/api/v1/workshop/" + _id
-      );
-      setWorkshopFromServer((workshopFromServerCopy) =>
-        workshopFromServerCopy.filter((workshop) => workshop._id !== _id)
-      );
-      toast.success("הסדנא נמחקה בהצלחה", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } catch (e) {
-      toast.error("שגיאה.. נסה שנית", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
-  };
-
   const workshopsArr = workshopFromServer.slice().reverse();
-
-  const handleJoinClick = async (_id) => {
-    try {
-      const { data } = axios.patch(
-        "http://localhost:8080/api/v1/workshop/" + _id,
-        {
-          headers: {
-            bearer: `${token}`,
-          },
-        }
-      );
-    } catch (e) {
-      toast.error("שגיאה.. נסה שנית", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    }
-  };
 
   return (
     <Grid container spacing={2} sx={{ mb: 2 }}>
@@ -90,8 +34,7 @@ const AllWorkshopPage = () => {
             alt={workshop.alt}
             date={workshop.date}
             participant={workshop.participant}
-            onDelete={handleDeleteWorkshop}
-            onJoin={handleJoinClick}
+            time={workshop.time}
           />
         </Grid>
       ))}

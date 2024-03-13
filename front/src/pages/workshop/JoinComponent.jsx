@@ -17,6 +17,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 
 const JoinComponent = (_id) => {
   const [errorsState, setErrorsState] = useState(null);
+  const [lastJoin, setLastJoin] = React.useState(false);
   const [inputValue, setInputValue] = useState({
     firstName: "",
     lastName: "",
@@ -36,6 +37,14 @@ const JoinComponent = (_id) => {
         console.log(e);
       });
   }, []);
+
+  const participant = workshop?.participant;
+
+  React.useEffect(() => {
+    if (participant?.length === 10) {
+      setLastJoin(true);
+    }
+  }, [participant]);
 
   const handleInputsChange = (e) => {
     setInputValue((currentState) => ({
@@ -59,14 +68,19 @@ const JoinComponent = (_id) => {
 
   return (
     <Box sx={{ p: 2 }}>
+      {lastJoin && (
+        <Alert severity="warning" sx={{ mb: 2 }}>
+          נשאר רק מקום אחד בסדנא
+        </Alert>
+      )}
       <Typography variant="h5" sx={{ mb: 1 }}>
         {workshop?.title}
       </Typography>
       <Typography sx={{ mb: 1 }}>{workshop?.subtitle}</Typography>
-      <Box sx={{ display: "flex" }}>
-        <Typography sx={{ ml: 3, mb: 1 }}>בתאריך:{workshop?.date}</Typography>
-        <Typography sx={{ mb: 1 }}>בשעה:{workshop?.time}</Typography>
-      </Box>
+
+      <Typography sx={{ ml: 3, mb: 1 }}>בתאריך:{workshop?.date}</Typography>
+      <Typography sx={{ mb: 1 }}>בשעה:{workshop?.time}</Typography>
+
       <Typography>כתובת:{workshop?.address}</Typography>
 
       <TextField

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Box, Typography, Divider, Grid, Link } from "@mui/material";
 import RecipeComponent from "../../components/RecipeComponent";
 import { useLocation } from "react-router-dom";
+import "./recipePage.css";
 
 const RecipePage = () => {
   const location = useLocation();
@@ -21,10 +22,10 @@ const RecipePage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [_id]);
 
-  const ingredients = recipeFromServer.ingredients;
-  const steps = recipeFromServer.steps;
+  const ingredients = recipeFromServer.Ingredients;
+  const steps = recipeFromServer?.steps?.slice(0, -1);
 
   useEffect(() => {
     axios
@@ -48,11 +49,14 @@ const RecipePage = () => {
   return (
     <Box>
       <img
+        className="recipeImg"
         src={recipeFromServer.url}
         alt={recipeFromServer.alt}
         loading="lazy"
       />
-      <Typography variant="h2">{recipeFromServer.name}</Typography>
+      <Typography variant="h4" sx={{ fontWeight: 700 }}>
+        {recipeFromServer.name}
+      </Typography>
       <Typography variant="body1">{recipeFromServer.description}</Typography>
       <Divider sx={{ mt: 2, mb: 2, width: "50%" }} />
       <Box sx={{ display: "flex" }}>
@@ -72,7 +76,7 @@ const RecipePage = () => {
         </Link>
       </Box>
 
-      <Divider sx={{ mt: 2, mb: 2, width: "50%" }} />
+      <Divider className="divider" sx={{ mt: 2, width: "50%" }} />
 
       <Box
         sx={{
@@ -80,25 +84,43 @@ const RecipePage = () => {
           transition: "all 2s",
         }}
       >
-        <Typography variant="h6">מצרכים</Typography>
+        <Typography variant="h6" sx={{ mb: 1, mt: 2, fontWeight: 600 }}>
+          מצרכים
+        </Typography>
         {ingredients?.map((item) => (
-          <Typography variant="body2" key={item}>
+          <Typography variant="body1" key={item}>
             {item}
           </Typography>
         ))}
 
-        <Typography variant="h6">אופן ההכנה</Typography>
+        <Typography variant="h6" sx={{ mb: 1, mt: 2, fontWeight: 600 }}>
+          אופן ההכנה
+        </Typography>
 
         {steps?.map((step) => (
-          <Typography variant="body2" key={step}>
-            -{step}
+          <Typography variant="body1" key={step}>
+            {`- ${step}`}
           </Typography>
         ))}
       </Box>
 
-      <Divider sx={{ mb: 2, mt: 2 }} />
+      <Typography
+        variant="h6"
+        sx={{ mb: 1, mt: 2, fontWeight: 600, fontStyle: "italic" }}
+      >
+        בתיאבון!!!!{" "}
+      </Typography>
 
-      <Grid container spacing={4} sx={{ mb: 2 }}>
+      <Divider className="divider" sx={{ mb: 2, mt: 2 }} />
+
+      <Typography
+        variant="h5"
+        sx={{ mb: 1, mt: 2, fontWeight: 600, fontStyle: "italic" }}
+      >
+        אולי יעניין אותך גם...
+      </Typography>
+
+      <Grid container spacing={2}>
         {newR.map((recipe) => (
           <Grid
             item

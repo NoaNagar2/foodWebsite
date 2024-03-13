@@ -1,3 +1,30 @@
+.typography-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.typography-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 2000ms, transform 2000ms;
+}
+
+.typography-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.typography-exit-active {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 2000ms, transform 2000ms;
+}
+
+.moreButtons {
+  margin: 0 auto;
+  text-align: center;
+}
+
 @media (max-width: 970px) {
   .buttonBox {
     flex-direction: column;

@@ -65,6 +65,23 @@ const AppRouter = () => {
           </AdminGuard>
         }
       />
+      <Route
+        path="/participant"
+        element={
+          <AdminGuard>
+            <Participant />
+          </AdminGuard>
+        }
+      />
+
+      <Route
+        path="/likesrecipe"
+        element={
+          <AuthGuard1>
+            <MyLikeRecipe />
+          </AuthGuard1>
+        }
+      />
 
       <Route path="*" component={Page404} />
     </Routes>

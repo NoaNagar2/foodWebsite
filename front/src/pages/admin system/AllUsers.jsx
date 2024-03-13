@@ -34,16 +34,9 @@ const AllUsers = () => {
             className="box"
           >
             <PersonIcon sx={{ ml: 2 }} />
-            <Typography
-              sx={{ width: "20vw", mb: 1 }}
-              className="text"
-            >{`${user.firstName} ${user.lastName}`}</Typography>
-            <Typography sx={{ width: "20vw", mb: 1 }} className="text">
-              {user.email}
-            </Typography>
-            <Typography sx={{ width: "20vw", mb: 1 }} className="text">
-              {user.phone}
-            </Typography>
+            <Typography className="text">{`${user.firstName} ${user.lastName}`}</Typography>
+            <Typography className="text">{user.email}</Typography>
+            <Typography className="text">{user.phone}</Typography>
           </Box>
           <Divider />
         </Box>

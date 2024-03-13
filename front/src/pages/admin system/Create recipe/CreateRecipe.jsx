@@ -3,9 +3,12 @@ import { recipeValidation } from "../../../validation/recipeValidation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getToken } from "../../../service/storageService";
+// import { useNavigate } from "react-router-dom";
 
 const CreateRecipe = async (inputValue, setErrorsState) => {
   const token = getToken();
+  // const navigate = useNavigate();
+
   try {
     const joiResponse = recipeValidation(inputValue);
     setErrorsState(joiResponse);
@@ -24,25 +27,25 @@ const CreateRecipe = async (inputValue, setErrorsState) => {
     );
 
     toast.success("המתכון נוסף בהצלחה", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   } catch (e) {
     toast.error("משהו השתבש... ודא שכל השדות מלאים", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: "light",
     });
   }
 };

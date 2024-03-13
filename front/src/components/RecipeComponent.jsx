@@ -21,6 +21,8 @@ import { getToken } from "../service/storageService";
 import PopUpComponent from "../pages/register_login/PopUpComponent";
 import { isAdmin } from "./isAdmin";
 import { toast } from "react-toastify";
+import { getEmail } from "./getEmail";
+import { createTheme } from "@mui/material/styles";
 
 const RecipeComponent = ({ _id }) => {
   const [open, setOpen] = React.useState(false);
@@ -28,9 +30,11 @@ const RecipeComponent = ({ _id }) => {
   const [copied, setCopied] = React.useState(false);
   const [isLike, setIsLike] = React.useState(false);
   const [recipe, setRecipe] = React.useState();
+  const [user, setUser] = React.useState([]);
   const token = getToken();
   const navigate = useNavigate();
   const admin = isAdmin();
+  const email = getEmail();
 
   React.useEffect(() => {
     axios
@@ -41,19 +45,36 @@ const RecipeComponent = ({ _id }) => {
       .catch((e) => {
         console.log(e);
       });
+  }, [_id]);
+
+  React.useEffect(() => {
+    if (token) {
+      axios
+        .get("http://localhost:8080/api/v1/users/email/" + email)
+        .then(({ data }) => {
+          setUser(data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   }, []);
 
-  if (recipe) {
-    for (let i of recipe?.likes) {
-      if (i === _id) {
-        setIsLike(true);
+  const id = user?.user?._doc?._id;
+
+  React.useEffect(() => {
+    if (recipe) {
+      for (let i of recipe?.likes) {
+        if (id === i) {
+          setIsLike(true);
+        }
       }
     }
-  }
+  }, [recipe?.likes]);
 
   const copyToClipboard = () => {
     const currentUrl = window.location.href;
-    const okUrl = `${currentUrl}recipepage?data=${_id}`;
+    const okUrl = `http://localhost:3000/recipepage?data=${_id}`;
     navigator.clipboard
       .writeText(okUrl)
       .then(() => {
@@ -145,27 +166,36 @@ const RecipeComponent = ({ _id }) => {
         <PopUpComponent />
       </Dialog>
       <Card sx={{ maxWidth: 345 }} className="card" elevation={12}>
-        <CardMedia
-          component="img"
-          height="194"
-          image={recipe?.url}
-          alt={recipe?.alt}
-          className="imgR"
-          onClick={() => {
-            navigate(`/recipepage?data=${_id}`);
-          }}
-        />
-        <CardHeader title={recipe?.name} />
+        <div className="grid">
+          <figure className="effect-bubba">
+            <img
+              className="imgR"
+              height="220px"
+              width="100%"
+              src={recipe?.url}
+              alt={recipe?.alt}
+              onClick={() => {
+                navigate(`/recipepage?data=${_id}`);
+              }}
+            />
+            <figcaption>
+              <h3>
+                &nbsp;<span>{recipe?.name}</span>
+              </h3>
+            </figcaption>
+          </figure>
+        </div>
+
         <CardActions disableSpacing>
           <IconButton
             aria-label="הוסף למועדפים"
             onClick={handleLikeRecipe}
             className="favIcon"
           >
-            <FavoriteIcon color={isLike ? "disabled" : "favActive"} />
+            <FavoriteIcon color={isLike ? "error" : ""} className="like" />
           </IconButton>
           <IconButton aria-label="share" onClick={copyToClipboard}>
-            <ShareIcon />
+            <ShareIcon className="share" />
           </IconButton>
           <Snackbar
             autoHideDuration={3000}
@@ -180,12 +210,12 @@ const RecipeComponent = ({ _id }) => {
                 navigate(`/editrecipe?data=${_id}`);
               }}
             >
-              <EditIcon />
+              <EditIcon className="edit" />
             </IconButton>
           )}
           {admin && (
             <IconButton aria-label="delete" onClick={handleDelete}>
-              <DeleteIcon />
+              <DeleteIcon className="delete" />
             </IconButton>
           )}
 
