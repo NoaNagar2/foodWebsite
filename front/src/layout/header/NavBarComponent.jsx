@@ -2,7 +2,7 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { Avatar, Typography, MenuItem, Link } from "@mui/material";
+import { Dialog, Typography, MenuItem, Link } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { styled, alpha } from "@mui/material/styles";
@@ -16,10 +16,14 @@ import "./navBar.css";
 import { useNavigate } from "react-router-dom";
 import { categoryArr } from "./categoryArr";
 import { getToken } from "../../service/storageService";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
+import PopUpComponent from "../../pages/register_login/PopUpComponent";
 
 const NavBarComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [openLog, setOpenLog] = React.useState(false);
   const [txt, setTxt] = React.useState("");
   const navigate = useNavigate();
   const token = getToken();
@@ -78,6 +82,15 @@ const NavBarComponent = () => {
     setOpen(!open);
   };
 
+  const handleLogOutIcon = () => {
+    localStorage.removeItem("token");
+    document.location = "/";
+  };
+
+  const handleClose = () => {
+    setOpenLog(false);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, justifyContent: "space-between" }}>
       <AppBar
@@ -95,9 +108,32 @@ const NavBarComponent = () => {
             <MenuIcon />
           </IconButton>
 
+          <Box className="LogIcon">
+            {token ? (
+              <IconButton sx={{ mr: 2 }} onClick={handleLogOutIcon}>
+                <LogoutIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                sx={{ mr: 2 }}
+                onClick={() => {
+                  setOpenLog(true);
+                }}
+              >
+                <LoginIcon />
+              </IconButton>
+            )}
+          </Box>
+
+          {openLog && (
+            <Dialog open={openLog} onClose={handleClose}>
+              <PopUpComponent />
+            </Dialog>
+          )}
+
           <Box className="recipeLink">
             <MenuItem
-              sx={{ p: 1, pr: 4, pl: 5, flexGrow: 1, color: "black", mr: 3 }}
+              sx={{ p: 1, pr: 2, pl: 5, flexGrow: 1, color: "black", mr: 3 }}
               onClick={handleOpenRecipe}
             >
               <Typography textAlign="center">

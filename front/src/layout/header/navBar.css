@@ -13,24 +13,30 @@
   cursor: pointer;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
   .likesLink {
     display: none;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .workshopLink {
     display: none;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .recipeLink {
     display: none;
   }
   .logo {
     margin-right: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .LogIcon {
+    display: none;
   }
 }
 
